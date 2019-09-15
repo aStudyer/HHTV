@@ -1,0 +1,16 @@
+PODS:
+  - HHPageView (0.1.0)
+
+DEPENDENCIES:
+  - HHPageView
+
+SPEC REPOS:
+  https://github.com/aStudyer/HHSpecs.git:
+    - HHPageView
+
+SPEC CHECKSUMS:
+  HHPageView: b5f966b7252ddabcf71a45618478496302cf5f63
+
+PODFILE CHECKSUM: 5e6a888332cf913450a0181ad016173b85b5354f
+
+COCOAPODS: 1.6.1

@@ -22,6 +22,7 @@
 		8DF0AB03232CB9ED00B939BF /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AB02232CB9ED00B939BF /* DiscoverViewController.swift */; };
 		8DF0AB05232CBA0500B939BF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AB04232CBA0500B939BF /* ProfileViewController.swift */; };
 		8DF0AB08232CBF0D00B939BF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AB07232CBF0D00B939BF /* UIColor+Extension.swift */; };
+		F760720BCB392E0FED80A358 /* Pods_HHTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60BD3409B098CCD3E51614E /* Pods_HHTV.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,9 @@
 		8DF0AB02232CB9ED00B939BF /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		8DF0AB04232CBA0500B939BF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8DF0AB07232CBF0D00B939BF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		EAF9A86CFF86B4512E7C2D14 /* Pods-HHTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHTV.debug.xcconfig"; path = "Target Support Files/Pods-HHTV/Pods-HHTV.debug.xcconfig"; sourceTree = "<group>"; };
+		ED950046E7E515F6BB84FEE8 /* Pods-HHTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HHTV.release.xcconfig"; path = "Target Support Files/Pods-HHTV/Pods-HHTV.release.xcconfig"; sourceTree = "<group>"; };
+		F60BD3409B098CCD3E51614E /* Pods_HHTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HHTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F760720BCB392E0FED80A358 /* Pods_HHTV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +65,8 @@
 			children = (
 				18CAC9A31DD180B9006A328E /* HHTV */,
 				18CAC9A21DD180B9006A328E /* Products */,
+				A3C08A7BA2EE8CBB7DEF930D /* Pods */,
+				5F0B21B65BC729FE06D0902C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,12 +165,30 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		5F0B21B65BC729FE06D0902C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F60BD3409B098CCD3E51614E /* Pods_HHTV.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8DF0AB06232CBEF900B939BF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				8DF0AB07232CBF0D00B939BF /* UIColor+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A3C08A7BA2EE8CBB7DEF930D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAF9A86CFF86B4512E7C2D14 /* Pods-HHTV.debug.xcconfig */,
+				ED950046E7E515F6BB84FEE8 /* Pods-HHTV.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18CAC9B31DD180B9006A328E /* Build configuration list for PBXNativeTarget "HHTV" */;
 			buildPhases = (
+				D1767AE6FA68142F4A3993FE /* [CP] Check Pods Manifest.lock */,
 				18CAC99D1DD180B9006A328E /* Sources */,
 				18CAC99E1DD180B9006A328E /* Frameworks */,
 				18CAC99F1DD180B9006A328E /* Resources */,
+				041A5AFBEF4A46506C1908C5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -238,6 +265,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		041A5AFBEF4A46506C1908C5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HHTV/Pods-HHTV-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/HHPageView/HHPageView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HHPageView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HHTV/Pods-HHTV-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1767AE6FA68142F4A3993FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HHTV-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18CAC99D1DD180B9006A328E /* Sources */ = {
@@ -388,6 +462,7 @@
 		};
 		18CAC9B41DD180B9006A328E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAF9A86CFF86B4512E7C2D14 /* Pods-HHTV.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -403,6 +478,7 @@
 		};
 		18CAC9B51DD180B9006A328E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED950046E7E515F6BB84FEE8 /* Pods-HHTV.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

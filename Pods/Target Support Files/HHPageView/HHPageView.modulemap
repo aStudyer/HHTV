@@ -1,0 +1,6 @@
+framework module HHPageView {
+  umbrella header "HHPageView-umbrella.h"
+
+  export *
+  module * { export * }
+}
