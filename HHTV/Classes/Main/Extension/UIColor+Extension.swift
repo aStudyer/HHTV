@@ -46,7 +46,7 @@ extension UIColor {
         Scanner(string: gHex).scanHexInt32(&g)
         Scanner(string: bHex).scanHexInt32(&b)
         
-        self.init(r : CGFloat(r), g : CGFloat(g), b : CGFloat(b), alpha: alpha)
+        self.init(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b), alpha: alpha)
     }
     
     class func randomColor() -> UIColor {
