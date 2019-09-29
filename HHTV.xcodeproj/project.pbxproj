@@ -16,6 +16,8 @@
 		18CAC9C91DD182A4006A328E /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CAC9C81DD182A4006A328E /* Profile.storyboard */; };
 		18CAC9CC1DD182E7006A328E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CAC9CB1DD182E7006A328E /* MainViewController.swift */; };
 		8D2FBCBB2334B37200886A38 /* home_pic_default.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBCBA2334B37200886A38 /* home_pic_default.jpeg */; };
+		8D2FBD2423402B3E00886A38 /* Emitterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD2323402B3E00886A38 /* Emitterable.swift */; };
+		8D2FBD2623402C5300886A38 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD2523402C5300886A38 /* NibLoadable.swift */; };
 		8DF0AAFD232CB8BA00B939BF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AAFC232CB8BA00B939BF /* NavigationController.swift */; };
 		8DF0AAFF232CB9C400B939BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AAFE232CB9C400B939BF /* HomeViewController.swift */; };
 		8DF0AB01232CB9D600B939BF /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AB00232CB9D600B939BF /* RankViewController.swift */; };
@@ -52,6 +54,8 @@
 		18CAC9C81DD182A4006A328E /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../../Profile.storyboard; sourceTree = "<group>"; };
 		18CAC9CB1DD182E7006A328E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8D2FBCBA2334B37200886A38 /* home_pic_default.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home_pic_default.jpeg; sourceTree = "<group>"; };
+		8D2FBD2323402B3E00886A38 /* Emitterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitterable.swift; sourceTree = "<group>"; };
+		8D2FBD2523402C5300886A38 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		8DF0AAFC232CB8BA00B939BF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		8DF0AAFE232CB9C400B939BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8DF0AB00232CB9D600B939BF /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		18CAC9BA1DD1811A006A328E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				8D2FBD2223402B3200886A38 /* Protocol */,
 				8DF0AB6923312DFA00B939BF /* Common */,
 				8DF0AB06232CBEF900B939BF /* Extension */,
 				18CAC9CA1DD182D9006A328E /* Controller */,
@@ -208,6 +213,15 @@
 				F60BD3409B098CCD3E51614E /* Pods_HHTV.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D2FBD2223402B3200886A38 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8D2FBD2323402B3E00886A38 /* Emitterable.swift */,
+				8D2FBD2523402C5300886A38 /* NibLoadable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8DF0AB06232CBEF900B939BF /* Extension */ = {
@@ -448,8 +462,10 @@
 				18CAC9CC1DD182E7006A328E /* MainViewController.swift in Sources */,
 				8DF0AAFD232CB8BA00B939BF /* NavigationController.swift in Sources */,
 				8DF0AB5423312B3500B939BF /* HomeType.swift in Sources */,
+				8D2FBD2423402B3E00886A38 /* Emitterable.swift in Sources */,
 				8DF0AB4B232FD06F00B939BF /* AnchorViewController.swift in Sources */,
 				8DF0AB03232CB9ED00B939BF /* DiscoverViewController.swift in Sources */,
+				8D2FBD2623402C5300886A38 /* NibLoadable.swift in Sources */,
 				8DF0AB05232CBA0500B939BF /* ProfileViewController.swift in Sources */,
 				8DF0AB6123312D5100B939BF /* NetworkTools.swift in Sources */,
 				18CAC9A51DD180B9006A328E /* AppDelegate.swift in Sources */,

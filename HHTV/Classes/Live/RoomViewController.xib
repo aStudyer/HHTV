@@ -37,18 +37,30 @@
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBV-EK-wBn" userLabel="分享">
                             <rect key="frame" x="83" y="0.0" width="82.5" height="44"/>
                             <state key="normal" image="menu_btn_share"/>
+                            <connections>
+                                <action selector="bottomMenuClick:" destination="-1" eventType="touchUpInside" id="Juu-1W-44h"/>
+                            </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuY-Rc-bpt" userLabel="礼物">
                             <rect key="frame" x="165.5" y="0.0" width="83" height="44"/>
                             <state key="normal" image="room_btn_gift"/>
+                            <connections>
+                                <action selector="bottomMenuClick:" destination="-1" eventType="touchUpInside" id="yc5-tj-sEX"/>
+                            </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onh-ji-cIi" userLabel="更多">
                             <rect key="frame" x="248.5" y="0.0" width="82.5" height="44"/>
                             <state key="normal" image="room_btn_more"/>
+                            <connections>
+                                <action selector="bottomMenuClick:" destination="-1" eventType="touchUpInside" id="qO6-nv-R89"/>
+                            </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJA-I4-dAp" userLabel="星星">
                             <rect key="frame" x="331" y="0.0" width="83" height="44"/>
                             <state key="normal" image="room_btn_qfstar"/>
+                            <connections>
+                                <action selector="bottomMenuClick:" destination="-1" eventType="touchUpInside" id="t3P-FW-Bp2"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -157,11 +169,11 @@
     </objects>
     <resources>
         <image name="menu_btn_close" width="16" height="16"/>
-        <image name="menu_btn_share" width="16" height="16"/>
-        <image name="room_btn_chat" width="16" height="16"/>
-        <image name="room_btn_gift" width="16" height="16"/>
-        <image name="room_btn_more" width="16" height="16"/>
-        <image name="room_btn_qfstar" width="16" height="16"/>
-        <image name="zhibo_btn_people" width="16" height="16"/>
+        <image name="menu_btn_share" width="25" height="25"/>
+        <image name="room_btn_chat" width="23" height="23"/>
+        <image name="room_btn_gift" width="23" height="24"/>
+        <image name="room_btn_more" width="23" height="23"/>
+        <image name="room_btn_qfstar" width="23" height="23"/>
+        <image name="zhibo_btn_people" width="20" height="16"/>
     </resources>
 </document>
