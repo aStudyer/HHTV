@@ -11,7 +11,7 @@ import UIKit
 private let kChatToolsViewHeight : CGFloat = 44
 private let kGiftlistViewHeight : CGFloat = kScreenH * 0.5
 
-class RoomViewController: UIViewController {
+class RoomViewController: UIViewController, Emitterable {
     
     // MARK: 控件属性
     @IBOutlet weak var bgImageView: UIImageView!
@@ -36,6 +36,10 @@ class RoomViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -99,6 +103,9 @@ extension RoomViewController {
             print("点击了更多")
         case 4:
             print("点击了粒子")
+            sender.isSelected = !sender.isSelected
+            let point = CGPoint(x: sender.center.x, y: view.bounds.height - sender.bounds.height * 0.5)
+            sender.isSelected ? startEmittering(point) : stopEmittering()
         default:
             fatalError("未处理按钮")
         }
