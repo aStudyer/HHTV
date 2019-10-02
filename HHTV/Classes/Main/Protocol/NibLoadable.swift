@@ -3,13 +3,13 @@
 //  HHTV
 //
 //  Created by aStudyer on 2019/9/29.
-//  Copyright © 2019 coderwhy. All rights reserved.
+//  Copyright © 2019 aStudyer. All rights reserved.
 //
 
 import UIKit
 
 protocol NibLoadable {
-    func test()
+
 }
 
 extension NibLoadable where Self : UIView {
@@ -18,3 +18,4 @@ extension NibLoadable where Self : UIView {
         return Bundle.main.loadNibNamed(loadName, owner: nil, options: nil)?.first as! Self
     }
 }
+

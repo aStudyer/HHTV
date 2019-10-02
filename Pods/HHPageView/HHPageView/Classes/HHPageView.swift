@@ -9,19 +9,25 @@ import UIKit
 
 public class HHPageView: UIView {
     // MARK: 定义属性
-    private var titles: [String]
-    private var childVcs: [UIViewController]
-    private var parentVc: UIViewController
-    private var titleStyle: HHPageStyle
+    fileprivate var titles: [String]!
+    fileprivate var style: HHTitleStyle!
+    fileprivate var childVcs: [UIViewController]!
+    fileprivate weak var parentVc: UIViewController!
     
-    // MARK: 构造函数
-    public init(frame: CGRect, titles: [String], titleStyle: HHPageStyle, childVcs: [UIViewController], parentVc: UIViewController) {
+    fileprivate var titleView: HHTitleView!
+    fileprivate var contentView: HHContentView!
+    
+    // MARK: 自定义构造函数
+    public init(frame: CGRect, titles: [String], style: HHTitleStyle, childVcs: [UIViewController], parentVc: UIViewController) {
+        super.init(frame: frame)
+        
+        assert(titles.count == childVcs.count, "标题&控制器个数不同,请检测!!!")
+        self.style = style
         self.titles = titles
         self.childVcs = childVcs
         self.parentVc = parentVc
-        self.titleStyle = titleStyle
         parentVc.automaticallyAdjustsScrollViewInsets = false
-        super.init(frame: frame)
+        
         setupUI()
     }
     
@@ -30,23 +36,37 @@ public class HHPageView: UIView {
     }
 }
 
-// MARK: - UI界面
+// MARK:- 设置界面内容
 extension HHPageView {
-    private func setupUI() {
-        // 1.添加titleView到pageView中
-        let titleViewFrame = CGRect(x: 0, y: 0, width: bounds.width, height: titleStyle.titleViewHeight)
-        let titleView = HHTitleView(frame: titleViewFrame, titles: titles, style: titleStyle)
+    fileprivate func setupUI() {
+        let titleH : CGFloat = 44
+        let titleFrame = CGRect(x: 0, y: 0, width: frame.width, height: titleH)
+        titleView = HHTitleView(frame: titleFrame, titles: titles, style : style)
+        titleView.delegate = self
         addSubview(titleView)
-        titleView.backgroundColor = titleStyle.titleViewBackgroundColor
         
-        // 2.添加contentView到pageView中
-        let contentViewFrame = CGRect(x: 0, y: titleView.frame.maxY, width: bounds.width, height: frame.height - titleViewFrame.height)
-        let contentView = HHContentView(frame: contentViewFrame, childVcs: childVcs, parentVc: parentVc)
+        let contentFrame = CGRect(x: 0, y: titleH, width: frame.width, height: frame.height - titleH)
+        contentView = HHContentView(frame: contentFrame, childVcs: childVcs, parentViewController: parentVc)
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        contentView.delegate = self
         addSubview(contentView)
-        contentView.backgroundColor = UIColor.white
-        
-        // 3.设置contentView&titleView关系
-        titleView.delegate = contentView
-        contentView.delegate = titleView
+    }
+}
+
+// MARK:- 设置HHContentView的代理
+extension HHPageView: HHContentViewDelegate {
+    func contentView(_ contentView: HHContentView, progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
+        titleView.setTitleWithProgress(progress, sourceIndex: sourceIndex, targetIndex: targetIndex)
+    }
+    
+    func contentViewEndScroll(_ contentView: HHContentView) {
+        titleView.contentViewDidEndScroll()
+    }
+}
+
+// MARK:- 设置HHTitleView的代理
+extension HHPageView: HHTitleViewDelegate {
+    func titleView(_ titleView: HHTitleView, selectedIndex index: Int) {
+        contentView.setCurrentIndex(index)
     }
 }

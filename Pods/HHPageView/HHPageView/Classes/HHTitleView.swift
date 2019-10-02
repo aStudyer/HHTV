@@ -7,271 +7,313 @@
 
 import UIKit
 
-protocol HHTitleViewDeleate: class {
-    func titleView(_ titleView: HHTitleView, didSelected currentIndex: Int)
+// MARK:- 定义协议
+protocol HHTitleViewDelegate: class {
+    func titleView(_ titleView : HHTitleView, selectedIndex index : Int)
 }
 
 class HHTitleView: UIView {
+    
+    // MARK: 对外属性
+    weak var delegate: HHTitleViewDelegate?
+    
     // MARK: 定义属性
-    weak var delegate: HHTitleViewDeleate?
+    fileprivate var titles: [String]!
+    fileprivate var style: HHTitleStyle!
+    fileprivate var currentIndex: Int = 0
     
-    private var titles: [String]
-    private var style: HHPageStyle
+    // MARK: 存储属性
+    fileprivate lazy var titleLabels: [UILabel] = [UILabel]()
     
-    private lazy var currentIndex: Int = 0
-    private lazy var titleLabels: [UILabel] = [UILabel]()
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: self.bounds)
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.scrollsToTop = false
-        return scrollView
+    // MARK: 控件属性
+    fileprivate lazy var scrollView: UIScrollView = {
+        let scrollV = UIScrollView()
+        scrollV.frame = self.bounds
+        scrollV.showsHorizontalScrollIndicator = false
+        scrollV.scrollsToTop = false
+        return scrollV
     }()
-    private lazy var bottomLine : UIView = {
+    fileprivate lazy var splitLineView: UIView = {
+        let splitView = UIView()
+        splitView.backgroundColor = self.style.splitViewColor
+        let h : CGFloat = 0.5
+        splitView.frame = CGRect(x: 0, y: self.frame.height - h, width: self.frame.width, height: h)
+        return splitView
+    }()
+    fileprivate lazy var bottomLine: UIView = {
         let bottomLine = UIView()
         bottomLine.backgroundColor = self.style.bottomLineColor
-        bottomLine.frame.size.height = self.style.bottomLineHeight
         return bottomLine
     }()
-    private lazy var coverView : UIView = {
+    fileprivate lazy var coverView: UIView = {
         let coverView = UIView()
         coverView.backgroundColor = self.style.coverBgColor
-        coverView.alpha = self.style.coverAlpha
+        coverView.alpha = 0.7
         return coverView
     }()
-    // MARK: 构造函数
-    init(frame: CGRect, titles: [String], style: HHPageStyle) {
+    
+    // MARK: 计算属性
+    fileprivate lazy var normalColorRGB = self.style.normalColor.rgba()
+    
+    fileprivate lazy var selectedColorRGB = self.style.selectedColor.rgba()
+    
+    // MARK: 自定义构造函数
+    init(frame: CGRect, titles: [String], style: HHTitleStyle) {
+        super.init(frame: frame)
+        
         self.titles = titles
         self.style = style
         
-        super.init(frame: frame)
-        
         setupUI()
     }
+    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("不能从Xib中加载")
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
-// MARK:- UI界面
+// MARK:- 设置UI界面内容
 extension HHTitleView {
-    private func setupUI() {
-        // 1.添加滚动view
+    fileprivate func setupUI() {
+        backgroundColor = style.backgroundColor
+        // 1.添加Scrollview
         addSubview(scrollView)
         
-        // 2.添加title对应的label
+        // 2.添加底部分割线
+        addSubview(splitLineView)
+        
+        // 3.设置所有的标题Label
         setupTitleLabels()
         
-        // 3.设置Label的frame
-        setupTitleLabelsFrame()
+        // 4.设置Label的位置
+        setupTitleLabelsPosition()
         
-        // 4.设置BottomLine
-        setupBottomLine()
+        // 5.设置底部的滚动条
+        if style.isShowBottomLine {
+            setupBottomLine()
+        }
         
-        // 5.设置CoverView
-        setupCoverView()
-    }
-    
-    private func setupTitleLabels() {
-        for (i, title) in titles.enumerated() {
-            // 1.创建Label
-            let titleLabel = UILabel()
-            
-            // 2.设置label的属性
-            titleLabel.text = title
-            titleLabel.tag = i
-            titleLabel.font = style.titleFont
-            titleLabel.textColor = i == 0 ? style.selectColor : style.normalColor
-            titleLabel.textAlignment = .center
-            
-            // 3.添加到父控件中
-            scrollView.addSubview(titleLabel)
-            
-            // 4.保存label
-            titleLabels.append(titleLabel)
-            
-            // 5.添加手势
-            let tapGes = UITapGestureRecognizer(target: self, action: #selector(titleLabelClick(_:)))
-            titleLabel.addGestureRecognizer(tapGes)
-            titleLabel.isUserInteractionEnabled = true
+        // 6.设置遮盖的View
+        if style.isShowCover {
+            setupCoverView()
         }
     }
     
-    private func setupTitleLabelsFrame() {
+    fileprivate func setupTitleLabels() {
+        for (index, title) in titles.enumerated() {
+            let label = UILabel()
+            label.tag = index
+            label.text = title
+            label.textColor = index == 0 ? style.selectedColor : style.normalColor
+            label.font = style.font
+            label.textAlignment = .center
+            
+            label.isUserInteractionEnabled = true
+            let tapGes = UITapGestureRecognizer(target: self, action: #selector(titleLabelClick(_ :)))
+            label.addGestureRecognizer(tapGes)
+            
+            titleLabels.append(label)
+            
+            scrollView.addSubview(label)
+        }
+    }
+    
+    
+    fileprivate func setupTitleLabelsPosition() {
+        
+        var titleX: CGFloat = 0.0
+        var titleW: CGFloat = 0.0
+        let titleY: CGFloat = 0.0
+        let titleH : CGFloat = frame.height
+        
         let count = titles.count
         
-        for (i, label) in titleLabels.enumerated() {
-            var w : CGFloat = 0
-            let h : CGFloat = bounds.height
-            var x : CGFloat = 0
-            let y : CGFloat = 0
-            
-            if !style.isScrollEnable {
-                w = bounds.width / CGFloat(count)
-                x = w * CGFloat(i)
-            } else {
-                w = (titles[i] as NSString).boundingRect(with: CGSize(width : CGFloat.greatestFiniteMagnitude, height: 0), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : style.titleFont], context: nil).width
-                if i == 0 {
-                    x = style.titleMargin * 0.5
+        for (index, label) in titleLabels.enumerated() {
+            if style.isScrollEnable {
+                let rect = (label.text! as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 0.0), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : style.font], context: nil)
+                titleW = rect.width
+                if index == 0 {
+                    titleX = style.titleMargin * 0.5
                 } else {
-                    let preLabel = titleLabels[i - 1]
-                    x = preLabel.frame.maxX + style.titleMargin
+                    let preLabel = titleLabels[index - 1]
+                    titleX = preLabel.frame.maxX + style.titleMargin
                 }
+                
+            } else {
+                titleW = frame.width / CGFloat(count)
+                titleX = titleW * CGFloat(index)
             }
             
-            label.frame = CGRect(x: x, y: y, width: w, height: h)
+            label.frame = CGRect(x: titleX, y: titleY, width: titleW, height: titleH)
             
-            if style.isTitleScale && i == 0 {
-                label.transform = CGAffineTransform(scaleX: style.scaleRange, y: style.scaleRange)
+            // 放大的代码
+            if index == 0 {
+                let scale = style.isNeedScale ? style.scaleRange : 1.0
+                label.transform = CGAffineTransform(scaleX: scale, y: scale)
             }
         }
         
         if style.isScrollEnable {
-            scrollView.contentSize.width = titleLabels.last!.frame.maxX + style.titleMargin * 0.5
+            scrollView.contentSize = CGSize(width: titleLabels.last!.frame.maxX + style.titleMargin * 0.5, height: 0)
         }
     }
     
-    private func setupBottomLine() {
-        // 1.判断是否需要显示底部线段
-        guard style.isShowBottomLine else { return }
-        
-        // 2.将bottomLine添加到titleView中
+    fileprivate func setupBottomLine() {
         scrollView.addSubview(bottomLine)
-        
-        // 3.设置frame
-        bottomLine.frame.origin.x = titleLabels.first!.frame.origin.x
-        bottomLine.frame.origin.y = bounds.height - style.bottomLineHeight
-        bottomLine.frame.size.width = titleLabels.first!.bounds.width
+        guard let frame = titleLabels.first?.frame else {
+            return
+        }
+        bottomLine.frame = frame
+        bottomLine.frame.size.height = style.bottomLineH
+        bottomLine.frame.origin.y = bounds.height - style.bottomLineH
     }
     
-    private func setupCoverView() {
-        // 1.判断是否需要显示
-        guard style.isShowCoverView else { return }
+    fileprivate func setupCoverView() {
+        scrollView.insertSubview(coverView, at: 0)
+        let firstLabel = titleLabels[0]
+        var coverW = firstLabel.frame.width
+        let coverH = style.coverH
+        var coverX = firstLabel.frame.origin.x
+        let coverY = (bounds.height - coverH) * 0.5
         
-        // 2.添加coverView到scrollview中
-        scrollView.addSubview(coverView)
-        
-        // 3.设置frame
-        var coverW : CGFloat = titleLabels.first!.frame.width - 2 * style.coverMargin
         if style.isScrollEnable {
-            coverW = titleLabels.first!.frame.width + style.titleMargin * 0.5
+            coverX -= style.coverMargin
+            coverW += style.coverMargin * 2
         }
-        let coverH : CGFloat = style.coverHeight
-        coverView.bounds = CGRect(x: 0, y: 0, width: coverW, height: coverH)
-        coverView.center = titleLabels.first!.center
+        coverView.frame = CGRect(x: coverX, y: coverY, width: coverW, height: coverH)
         
-        coverView.layer.cornerRadius = style.coverHeight * 0.5
+        coverView.layer.cornerRadius = style.coverRadius
         coverView.layer.masksToBounds = true
     }
 }
 
+
 // MARK:- 事件处理
 extension HHTitleView {
-    @objc fileprivate func titleLabelClick(_ tapGes : UITapGestureRecognizer) {
-        // 0.取出点击的Label
-        guard let newLabel = tapGes.view as? UILabel else { return }
+    @objc fileprivate func titleLabelClick(_ tap : UITapGestureRecognizer) {
+        // 0.获取当前Label
+        guard let currentLabel = tap.view as? UILabel else { return }
         
-        // 1.改变自身的titleLabel的颜色
+        // 1.如果是重复点击同一个Title,那么直接返回
+        if currentLabel.tag == currentIndex { return }
+        
+        // 2.获取之前的Label
         let oldLabel = titleLabels[currentIndex]
+        
+        // 3.切换文字的颜色
+        currentLabel.textColor = style.selectedColor
         oldLabel.textColor = style.normalColor
-        newLabel.textColor = style.selectColor
-        currentIndex = newLabel.tag
         
-        // 2.通知内容View改变当前的位置
-        delegate?.titleView(self, didSelected: currentIndex)
+        // 4.保存最新Label的下标值
+        currentIndex = currentLabel.tag
         
-        // 3.调整BottomLine
+        // 5.通知代理
+        delegate?.titleView(self, selectedIndex: currentIndex)
+        
+        // 6.居中显示
+        contentViewDidEndScroll()
+        
+        // 7.调整bottomLine
         if style.isShowBottomLine {
-            bottomLine.frame.origin.x = newLabel.frame.origin.x
-            bottomLine.frame.size.width = newLabel.frame.width
+            UIView.animate(withDuration: 0.15, animations: {
+                self.bottomLine.frame.origin.x = currentLabel.frame.origin.x
+                self.bottomLine.frame.size.width = currentLabel.frame.size.width
+            })
         }
         
-        // 4.调整缩放比例
-        if style.isTitleScale {
-            newLabel.transform = oldLabel.transform
+        // 8.调整比例
+        if style.isNeedScale {
             oldLabel.transform = CGAffineTransform.identity
+            currentLabel.transform = CGAffineTransform(scaleX: style.scaleRange, y: style.scaleRange)
         }
         
-        // 5.调整位置
-        adjustPosition(newLabel)
-        
-        // 6.调整coverView的位置
-        if style.isShowCoverView {
-            let coverW = style.isScrollEnable ? (newLabel.frame.width + style.titleMargin) : (newLabel.frame.width - 2 * style.coverMargin)
-            coverView.frame.size.width = coverW
-            coverView.center = newLabel.center
+        // 9.遮盖移动
+        if style.isShowCover {
+            let coverX = style.isScrollEnable ? (currentLabel.frame.origin.x - style.coverMargin) : currentLabel.frame.origin.x
+            let coverW = style.isScrollEnable ? (currentLabel.frame.width + style.coverMargin * 2) : currentLabel.frame.width
+            UIView.animate(withDuration: 0.15, animations: {
+                self.coverView.frame.origin.x = coverX
+                self.coverView.frame.size.width = coverW
+            })
         }
     }
 }
 
-extension HHTitleView: HHContentViewDelegate {
-    func contentView(_ contentView: HHContentView, endScroll inIndex: Int) {
-        // 1.取出两个Label
-        let oldLabel = titleLabels[currentIndex]
-        let newLabel = titleLabels[inIndex]
-        
-        // 2.改变文字的颜色
-        oldLabel.textColor = style.normalColor
-        newLabel.textColor = style.selectColor
-        
-        // 3.记录最新的index
-        currentIndex = inIndex
-        
-        // 4.判断是否可以滚动
-        adjustPosition(newLabel)
-    }
-    
-    fileprivate func adjustPosition(_ newLabel: UILabel) {
-        guard style.isScrollEnable else { return }
-        var offsetX = newLabel.center.x - scrollView.bounds.width * 0.5
-        if offsetX < 0 {
-            offsetX = 0
+
+// MARK:- 获取RGB的值
+extension HHTitleView {
+    fileprivate func getRGBWithColor(_ color : UIColor) -> (CGFloat, CGFloat, CGFloat) {
+        guard let components = color.cgColor.components else {
+            fatalError("请使用RGB方式给Title赋值颜色")
         }
-        let maxOffset = scrollView.contentSize.width - bounds.width
-        if offsetX > maxOffset {
-            offsetX = maxOffset
-        }
-        scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        
+        return (components[0] * 255, components[1] * 255, components[2] * 255)
     }
-    
-    func contentView(_ contentView: HHContentView, targetIndex: Int, progress: CGFloat) {
-        // 1.取出两个Label
-        let oldLabel = titleLabels[currentIndex]
-        let newLabel = titleLabels[targetIndex]
+}
+
+// MARK:- 对外暴露的方法
+extension HHTitleView {
+    func setTitleWithProgress(_ progress : CGFloat, sourceIndex : Int, targetIndex : Int) {
+        // 1.取出sourceLabel/targetLabel
+        let sourceLabel = titleLabels[sourceIndex]
+        let targetLabel = titleLabels[targetIndex]
         
-        // 2.渐变文字颜色
-        let selectRGB = getGRBValue(style.selectColor)
-        let normalRGB = getGRBValue(style.normalColor)
-        let deltaRGB = (selectRGB.0 - normalRGB.0, selectRGB.1 - normalRGB.1, selectRGB.2 - normalRGB.2)
-        oldLabel.textColor = UIColor(r: selectRGB.0 - deltaRGB.0 * progress, g: selectRGB.1 - deltaRGB.1 * progress, b: selectRGB.2 - deltaRGB.2 * progress)
-        newLabel.textColor = UIColor(r: normalRGB.0 + deltaRGB.0 * progress, g: normalRGB.1 + deltaRGB.1 * progress, b: normalRGB.2 + deltaRGB.2 * progress)
+        // 3.颜色的渐变(复杂)
+        // 3.1.取出变化的范围
+        let colorDelta = (selectedColorRGB.0 - normalColorRGB.0, selectedColorRGB.1 - normalColorRGB.1, selectedColorRGB.2 - normalColorRGB.2)
         
-        // 3.渐变BottomLine
+        // 3.2.变化sourceLabel
+        sourceLabel.textColor = UIColor(r: selectedColorRGB.0 - colorDelta.0 * progress, g: selectedColorRGB.1 - colorDelta.1 * progress, b: selectedColorRGB.2 - colorDelta.2 * progress)
+        
+        // 3.2.变化targetLabel
+        targetLabel.textColor = UIColor(r: normalColorRGB.0 + colorDelta.0 * progress, g: normalColorRGB.1 + colorDelta.1 * progress, b: normalColorRGB.2 + colorDelta.2 * progress)
+        
+        // 4.记录最新的index
+        currentIndex = targetIndex
+        
+        
+        let moveTotalX = targetLabel.frame.origin.x - sourceLabel.frame.origin.x
+        let moveTotalW = targetLabel.frame.width - sourceLabel.frame.width
+        
+        // 5.计算滚动的范围差值
         if style.isShowBottomLine {
-            let deltaX = newLabel.frame.origin.x - oldLabel.frame.origin.x
-            let deltaW = newLabel.frame.width - oldLabel.frame.width
-            bottomLine.frame.origin.x = oldLabel.frame.origin.x + deltaX * progress
-            bottomLine.frame.size.width = oldLabel.frame.width + deltaW * progress
+            bottomLine.frame.size.width = sourceLabel.frame.width + moveTotalW * progress
+            bottomLine.frame.origin.x = sourceLabel.frame.origin.x + moveTotalX * progress
         }
         
-        // 4.调整缩放
-        if style.isTitleScale {
-            let deltaScale = style.scaleRange - 1.0
-            oldLabel.transform = CGAffineTransform(scaleX: style.scaleRange - deltaScale * progress, y: style.scaleRange - deltaScale * progress)
-            newLabel.transform = CGAffineTransform(scaleX: 1.0 + deltaScale * progress, y: 1.0 + deltaScale * progress)
+        // 6.放大的比例
+        if style.isNeedScale {
+            let scaleDelta = (style.scaleRange - 1.0) * progress
+            sourceLabel.transform = CGAffineTransform(scaleX: style.scaleRange - scaleDelta, y: style.scaleRange - scaleDelta)
+            targetLabel.transform = CGAffineTransform(scaleX: 1.0 + scaleDelta, y: 1.0 + scaleDelta)
         }
         
-        // 5.调整coverView
-        if style.isShowCoverView {
-            let oldW = style.isScrollEnable ? (oldLabel.frame.width + style.titleMargin) : (oldLabel.frame.width - 2 * style.coverMargin)
-            let newW = style.isScrollEnable ? (newLabel.frame.width + style.titleMargin) : (newLabel.frame.width - 2 * style.coverMargin)
-            let deltaW = newW - oldW
-            let deltaX = newLabel.center.x - oldLabel.center.x
-            coverView.frame.size.width = oldW + deltaW * progress
-            coverView.center.x = oldLabel.center.x + deltaX * progress
+        // 7.计算cover的滚动
+        if style.isShowCover {
+            coverView.frame.size.width = style.isScrollEnable ? (sourceLabel.frame.width + 2 * style.coverMargin + moveTotalW * progress) : (sourceLabel.frame.width + moveTotalW * progress)
+            coverView.frame.origin.x = style.isScrollEnable ? (sourceLabel.frame.origin.x - style.coverMargin + moveTotalX * progress) : (sourceLabel.frame.origin.x + moveTotalX * progress)
         }
     }
     
-    private func getGRBValue(_ color: UIColor) -> (CGFloat, CGFloat, CGFloat) {
-        return (color.red() * 255, color.green() * 255, color.blue() * 255)
+    func contentViewDidEndScroll() {
+        // 0.如果是不需要滚动,则不需要调整中间位置
+        guard style.isScrollEnable else { return }
+        
+        // 1.获取获取目标的Label
+        let targetLabel = titleLabels[currentIndex]
+        
+        // 2.计算和中间位置的偏移量
+        var offSetX = targetLabel.center.x - bounds.width * 0.5
+        if offSetX < 0 {
+            offSetX = 0
+        }
+        
+        let maxOffset = scrollView.contentSize.width - bounds.width
+        if offSetX > maxOffset {
+            offSetX = maxOffset
+        }
+        
+        // 3.滚动UIScrollView
+        scrollView.setContentOffset(CGPoint(x: offSetX, y: 0), animated: true)
     }
 }

@@ -3,7 +3,7 @@
 //  HHTV
 //
 //  Created by aStudyer on 2019/9/14.
-//  Copyright © 2019 coderwhy. All rights reserved.
+//  Copyright © 2019 aStudyer. All rights reserved.
 //
 
 import UIKit

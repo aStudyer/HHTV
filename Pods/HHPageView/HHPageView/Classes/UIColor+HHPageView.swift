@@ -12,6 +12,14 @@ public extension UIColor {
         return self.cgColor.colorSpace?.model
     }
     
+    func rgb() -> (r: CGFloat, g: CGFloat, b: CGFloat) {
+        return (red(), green(), blue())
+    }
+    
+    func rgba() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        return (red(), green(), blue(), alpha())
+    }
+    
     func red() -> CGFloat {
         let c = self.cgColor.components!
         return c[0];

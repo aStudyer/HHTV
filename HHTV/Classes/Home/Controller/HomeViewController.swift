@@ -3,7 +3,7 @@
 //  HHTV
 //
 //  Created by aStudyer on 2019/9/14.
-//  Copyright © 2019 coderwhy. All rights reserved.
+//  Copyright © 2019 aStudyer. All rights reserved.
 //
 
 import UIKit
@@ -48,9 +48,9 @@ extension HomeViewController {
         let homeTypes = loadTypesData()
         
         // 2.创建主题内容
-        let style = HHPageStyle()
+        let style = HHTitleStyle()
         style.isScrollEnable = true
-        style.titleViewHeight = 44
+        style.titleHeight = 44
         style.bottomLineColor = UIColor.blue
         var pageFrame = CGRect(x: 0, y: kNavigationBarH + kStatusBarH, width: kScreenW, height: kScreenH - kNavigationBarH - kStatusBarH - tabBarController!.tabBar.frame.height)
         if #available(iOS 11, *) {
@@ -63,7 +63,7 @@ extension HomeViewController {
             anchorVc.homeType = type
             childVcs.append(anchorVc)
         }
-        let pageView = HHPageView(frame: pageFrame, titles: titles, titleStyle: style, childVcs: childVcs, parentVc: self)
+        let pageView = HHPageView(frame: pageFrame, titles: titles, style: style, childVcs: childVcs, parentVc: self)
         view.addSubview(pageView)
     }
     

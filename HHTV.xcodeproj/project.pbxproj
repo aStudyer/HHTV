@@ -18,6 +18,23 @@
 		8D2FBCBB2334B37200886A38 /* home_pic_default.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBCBA2334B37200886A38 /* home_pic_default.jpeg */; };
 		8D2FBD2423402B3E00886A38 /* Emitterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD2323402B3E00886A38 /* Emitterable.swift */; };
 		8D2FBD2623402C5300886A38 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD2523402C5300886A38 /* NibLoadable.swift */; };
+		8D2FBD412342594000886A38 /* ChatToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD402342594000886A38 /* ChatToolsView.swift */; };
+		8D2FBD432342598600886A38 /* ChatToolsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD422342598500886A38 /* ChatToolsView.xib */; };
+		8D2FBD45234259AB00886A38 /* EmoticonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD44234259AB00886A38 /* EmoticonView.swift */; };
+		8D2FBD47234259C600886A38 /* EmoticonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD46234259C600886A38 /* EmoticonViewCell.swift */; };
+		8D2FBD49234259DB00886A38 /* EmoticonViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD48234259DB00886A38 /* EmoticonViewCell.xib */; };
+		8D2FBD4B23425A1500886A38 /* Emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD4A23425A1500886A38 /* Emoticon.swift */; };
+		8D2FBD4D23425A2400886A38 /* EmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD4C23425A2400886A38 /* EmoticonPackage.swift */; };
+		8D2FBD502342604500886A38 /* GiftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD4E2342604300886A38 /* GiftViewModel.swift */; };
+		8D2FBD512342604500886A38 /* EmoticonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD4F2342604500886A38 /* EmoticonViewModel.swift */; };
+		8D2FBD542342607800886A38 /* GiftPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD522342607800886A38 /* GiftPackage.swift */; };
+		8D2FBD552342607800886A38 /* GiftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD532342607800886A38 /* GiftModel.swift */; };
+		8D2FBD582343A4E300886A38 /* GiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD572343A4E300886A38 /* GiftListView.swift */; };
+		8D2FBD5B2343A56800886A38 /* GiftListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD592343A56800886A38 /* GiftListView.xib */; };
+		8D2FBD5C2343A56800886A38 /* GiftViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD5A2343A56800886A38 /* GiftViewCell.xib */; };
+		8D2FBD5E2343A59500886A38 /* GiftViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD5D2343A59500886A38 /* GiftViewCell.swift */; };
+		8D2FBD6123448D3A00886A38 /* QHNormalEmotionSort.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD5F23448D3A00886A38 /* QHNormalEmotionSort.plist */; };
+		8D2FBD6223448D3A00886A38 /* QHSohuGifSort.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD6023448D3A00886A38 /* QHSohuGifSort.plist */; };
 		8DF0AAFD232CB8BA00B939BF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AAFC232CB8BA00B939BF /* NavigationController.swift */; };
 		8DF0AAFF232CB9C400B939BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AAFE232CB9C400B939BF /* HomeViewController.swift */; };
 		8DF0AB01232CB9D600B939BF /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AB00232CB9D600B939BF /* RankViewController.swift */; };
@@ -56,6 +73,23 @@
 		8D2FBCBA2334B37200886A38 /* home_pic_default.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = home_pic_default.jpeg; sourceTree = "<group>"; };
 		8D2FBD2323402B3E00886A38 /* Emitterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitterable.swift; sourceTree = "<group>"; };
 		8D2FBD2523402C5300886A38 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		8D2FBD402342594000886A38 /* ChatToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatToolsView.swift; sourceTree = "<group>"; };
+		8D2FBD422342598500886A38 /* ChatToolsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatToolsView.xib; sourceTree = "<group>"; };
+		8D2FBD44234259AB00886A38 /* EmoticonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonView.swift; sourceTree = "<group>"; };
+		8D2FBD46234259C600886A38 /* EmoticonViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonViewCell.swift; sourceTree = "<group>"; };
+		8D2FBD48234259DB00886A38 /* EmoticonViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmoticonViewCell.xib; sourceTree = "<group>"; };
+		8D2FBD4A23425A1500886A38 /* Emoticon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoticon.swift; sourceTree = "<group>"; };
+		8D2FBD4C23425A2400886A38 /* EmoticonPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoticonPackage.swift; sourceTree = "<group>"; };
+		8D2FBD4E2342604300886A38 /* GiftViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftViewModel.swift; sourceTree = "<group>"; };
+		8D2FBD4F2342604500886A38 /* EmoticonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonViewModel.swift; sourceTree = "<group>"; };
+		8D2FBD522342607800886A38 /* GiftPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftPackage.swift; sourceTree = "<group>"; };
+		8D2FBD532342607800886A38 /* GiftModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftModel.swift; sourceTree = "<group>"; };
+		8D2FBD572343A4E300886A38 /* GiftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftListView.swift; sourceTree = "<group>"; };
+		8D2FBD592343A56800886A38 /* GiftListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GiftListView.xib; sourceTree = "<group>"; };
+		8D2FBD5A2343A56800886A38 /* GiftViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GiftViewCell.xib; sourceTree = "<group>"; };
+		8D2FBD5D2343A59500886A38 /* GiftViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftViewCell.swift; sourceTree = "<group>"; };
+		8D2FBD5F23448D3A00886A38 /* QHNormalEmotionSort.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = QHNormalEmotionSort.plist; sourceTree = "<group>"; };
+		8D2FBD6023448D3A00886A38 /* QHSohuGifSort.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = QHSohuGifSort.plist; sourceTree = "<group>"; };
 		8DF0AAFC232CB8BA00B939BF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		8DF0AAFE232CB9C400B939BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8DF0AB00232CB9D600B939BF /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +258,69 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		8D2FBD3B234258D100886A38 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DF0AB6523312DB900B939BF /* RoomViewController.swift */,
+				8DF0AB6623312DB900B939BF /* RoomViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D2FBD3C234258E700886A38 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D2FBD532342607800886A38 /* GiftModel.swift */,
+				8D2FBD522342607800886A38 /* GiftPackage.swift */,
+				8D2FBD4A23425A1500886A38 /* Emoticon.swift */,
+				8D2FBD4C23425A2400886A38 /* EmoticonPackage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D2FBD3D234258EC00886A38 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D2FBD562343A4AE00886A38 /* GiftView */,
+				8D2FBD3F2342593200886A38 /* ChatView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D2FBD3E234258F300886A38 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8D2FBD5F23448D3A00886A38 /* QHNormalEmotionSort.plist */,
+				8D2FBD6023448D3A00886A38 /* QHSohuGifSort.plist */,
+				8D2FBD4F2342604500886A38 /* EmoticonViewModel.swift */,
+				8D2FBD4E2342604300886A38 /* GiftViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8D2FBD3F2342593200886A38 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				8D2FBD422342598500886A38 /* ChatToolsView.xib */,
+				8D2FBD402342594000886A38 /* ChatToolsView.swift */,
+				8D2FBD44234259AB00886A38 /* EmoticonView.swift */,
+				8D2FBD48234259DB00886A38 /* EmoticonViewCell.xib */,
+				8D2FBD46234259C600886A38 /* EmoticonViewCell.swift */,
+			);
+			path = ChatView;
+			sourceTree = "<group>";
+		};
+		8D2FBD562343A4AE00886A38 /* GiftView */ = {
+			isa = PBXGroup;
+			children = (
+				8D2FBD572343A4E300886A38 /* GiftListView.swift */,
+				8D2FBD592343A56800886A38 /* GiftListView.xib */,
+				8D2FBD5D2343A59500886A38 /* GiftViewCell.swift */,
+				8D2FBD5A2343A56800886A38 /* GiftViewCell.xib */,
+			);
+			path = GiftView;
+			sourceTree = "<group>";
+		};
 		8DF0AB06232CBEF900B939BF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,8 +387,10 @@
 		8DF0AB6423312D9A00B939BF /* Live */ = {
 			isa = PBXGroup;
 			children = (
-				8DF0AB6523312DB900B939BF /* RoomViewController.swift */,
-				8DF0AB6623312DB900B939BF /* RoomViewController.xib */,
+				8D2FBD3E234258F300886A38 /* ViewModel */,
+				8D2FBD3D234258EC00886A38 /* View */,
+				8D2FBD3C234258E700886A38 /* Model */,
+				8D2FBD3B234258D100886A38 /* Controller */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -385,16 +484,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				18CAC9C41DD181B7006A328E /* Rank.storyboard in Resources */,
+				8D2FBD6223448D3A00886A38 /* QHSohuGifSort.plist in Resources */,
 				8DF0AB6823312DB900B939BF /* RoomViewController.xib in Resources */,
 				8D2FBCBB2334B37200886A38 /* home_pic_default.jpeg in Resources */,
 				8DF0AB7023312F2F00B939BF /* types.plist in Resources */,
 				18CAC9AF1DD180B9006A328E /* LaunchScreen.storyboard in Resources */,
+				8D2FBD49234259DB00886A38 /* EmoticonViewCell.xib in Resources */,
 				8DF0AB6D23312E9400B939BF /* Home.storyboard in Resources */,
 				18CAC9AC1DD180B9006A328E /* Assets.xcassets in Resources */,
+				8D2FBD6123448D3A00886A38 /* QHNormalEmotionSort.plist in Resources */,
+				8D2FBD5B2343A56800886A38 /* GiftListView.xib in Resources */,
 				18CAC9AA1DD180B9006A328E /* Main.storyboard in Resources */,
 				8DF0AB5B23312B9100B939BF /* HomeViewCell.xib in Resources */,
 				18CAC9C91DD182A4006A328E /* Profile.storyboard in Resources */,
+				8D2FBD432342598600886A38 /* ChatToolsView.xib in Resources */,
 				18CAC9C71DD18219006A328E /* Discover.storyboard in Resources */,
+				8D2FBD5C2343A56800886A38 /* GiftViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,8 +563,12 @@
 			files = (
 				8DF0AB01232CB9D600B939BF /* RankViewController.swift in Sources */,
 				8DF0AB6B23312E1000B939BF /* Const.swift in Sources */,
+				8D2FBD47234259C600886A38 /* EmoticonViewCell.swift in Sources */,
+				8D2FBD552342607800886A38 /* GiftModel.swift in Sources */,
 				8DF0AB5023312AF300B939BF /* HomeViewModel.swift in Sources */,
 				18CAC9CC1DD182E7006A328E /* MainViewController.swift in Sources */,
+				8D2FBD412342594000886A38 /* ChatToolsView.swift in Sources */,
+				8D2FBD4B23425A1500886A38 /* Emoticon.swift in Sources */,
 				8DF0AAFD232CB8BA00B939BF /* NavigationController.swift in Sources */,
 				8DF0AB5423312B3500B939BF /* HomeType.swift in Sources */,
 				8D2FBD2423402B3E00886A38 /* Emitterable.swift in Sources */,
@@ -467,16 +576,23 @@
 				8DF0AB03232CB9ED00B939BF /* DiscoverViewController.swift in Sources */,
 				8D2FBD2623402C5300886A38 /* NibLoadable.swift in Sources */,
 				8DF0AB05232CBA0500B939BF /* ProfileViewController.swift in Sources */,
+				8D2FBD502342604500886A38 /* GiftViewModel.swift in Sources */,
 				8DF0AB6123312D5100B939BF /* NetworkTools.swift in Sources */,
+				8D2FBD512342604500886A38 /* EmoticonViewModel.swift in Sources */,
+				8D2FBD5E2343A59500886A38 /* GiftViewCell.swift in Sources */,
 				18CAC9A51DD180B9006A328E /* AppDelegate.swift in Sources */,
+				8D2FBD4D23425A2400886A38 /* EmoticonPackage.swift in Sources */,
 				8DF0AB5E23312D0600B939BF /* BaseModel.swift in Sources */,
 				8DF0AB5923312B7400B939BF /* HomeViewCell.swift in Sources */,
+				8D2FBD45234259AB00886A38 /* EmoticonView.swift in Sources */,
 				8DF0AAFF232CB9C400B939BF /* HomeViewController.swift in Sources */,
 				8DF0AB6323312D6600B939BF /* KingfisherExtension.swift in Sources */,
 				8DF0AB5623312B4B00B939BF /* AnchorModel.swift in Sources */,
 				8DF0AB6723312DB900B939BF /* RoomViewController.swift in Sources */,
 				8DF0AB4E23312AD500B939BF /* WaterfallLayout.swift in Sources */,
 				8DF0AB08232CBF0D00B939BF /* UIColor+Extension.swift in Sources */,
+				8D2FBD542342607800886A38 /* GiftPackage.swift in Sources */,
+				8D2FBD582343A4E300886A38 /* GiftListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

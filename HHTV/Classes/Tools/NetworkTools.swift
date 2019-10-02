@@ -3,7 +3,7 @@
 //  HHTV
 //
 //  Created by aStudyer on 2019/9/17.
-//  Copyright © 2019 coderwhy. All rights reserved.
+//  Copyright © 2019 aStudyer. All rights reserved.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class NetworkTools {
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
         
         // 2.发送网络请求
-        Alamofire.request(URLString, method: method, parameters: parameters).validate(contentType: ["text/plain", "text/html"]).responseJSON { (response) in
+        Alamofire.request(URLString, method: method, parameters: parameters).responseJSON { (response) in
             
             // 3.获取结果
             guard let result = response.result.value else {

@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
-  - HHPageView (0.1.3)
+  - HHPageView (0.1.6)
   - Kingfisher (4.10.1)
 
 DEPENDENCIES:
@@ -17,7 +17,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  HHPageView: b022e9d3084bcc0ac622f4248a8dc775f98da646
+  HHPageView: b9081fc0417dadbe656dcde5c8200cc48b928375
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
 
 PODFILE CHECKSUM: 9dd3682d9070649f51f468800ff77bf5d31b1e74

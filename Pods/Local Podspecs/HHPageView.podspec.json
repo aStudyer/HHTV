@@ -1,0 +1,24 @@
+{
+  "name": "HHPageView",
+  "version": "0.1.5",
+  "summary": "A short description of HHPageView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/aStudyer/HHPageView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "aStudyer": "astudyer@163.com"
+  },
+  "source": {
+    "git": "https://github.com/aStudyer/HHPageView.git",
+    "tag": "0.1.5"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HHPageView/Classes/**/*.swift",
+  "swift_version": "4.0",
+  "frameworks": "UIKit"
+}
