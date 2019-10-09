@@ -64,4 +64,10 @@ extension ServerManager: ClientManagerDelegate {
             }
         }
     }
+    func removeClient(_ client: ClientManager) {
+        guard let index = clientManagers.firstIndex(of: client) else {
+            return
+        }
+        clientManagers.remove(at: index)
+    }
 }

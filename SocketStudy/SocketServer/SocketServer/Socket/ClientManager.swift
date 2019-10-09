@@ -11,6 +11,7 @@ import SwiftSocket
 
 protocol ClientManagerDelegate : class {
     func sendMessageToClient(_ data: Data)
+    func removeClient(_ client : ClientManager)
 }
 
 class ClientManager: NSObject {
@@ -20,6 +21,10 @@ class ClientManager: NSObject {
     
     fileprivate var isClientConnected: Bool = false
     
+    fileprivate var heartTimeCount : Int = 0
+    
+    private lazy var timer: Timer = Timer(timeInterval: 1, target: self, selector: #selector(checkHeartBeat), userInfo: nil, repeats: true)
+    
     init(_ client: TCPClient) {
         self.tcpClient = client
     }
@@ -27,6 +32,7 @@ class ClientManager: NSObject {
 extension ClientManager {
     func startReadMessage() {
         isClientConnected = true
+        RunLoop.main.add(timer, forMode: .common)
         while isClientConnected {
             if let lMsg = tcpClient.read(4) {
                 // 1.读取长度的data
@@ -48,12 +54,33 @@ extension ClientManager {
                 }
                 let data = Data(bytes: msg, count: length)
                 
+                if type == 1 {
+                    tcpClient.close()
+                    delegate?.removeClient(self)
+                } else if type == 100 {
+                    heartTimeCount = 0
+                    continue
+                }
+                
                 delegate?.sendMessageToClient(headerData + typeData + data)
             } else {
-                isClientConnected = false
-                print("client [\(tcpClient.address):\(tcpClient.port)] is closed")
-                tcpClient.close()
+                removeClient()
             }
         }
+    }
+    @objc fileprivate func checkHeartBeat() {
+        heartTimeCount += 1
+        DispatchQueue.main.async {
+            print("💓💓💓💓💓💓💓💓💓")
+        }
+        if heartTimeCount >= 10 {
+            self.removeClient()
+        }
+    }
+    private func removeClient() {
+        delegate?.removeClient(self)
+        isClientConnected = false
+        print("client [\(tcpClient.address):\(tcpClient.port)] is closed")
+        tcpClient.close()
     }
 }

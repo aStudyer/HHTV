@@ -19,6 +19,7 @@ protocol HHSocketDelegate : class {
 class HHSocket {
     weak var delegate: HHSocketDelegate?
     fileprivate var tcpClient: TCPClient
+    fileprivate var timer : Timer!
     fileprivate var userInfo: UserInfo.Builder = {
         let userInfo = UserInfo.Builder()
         userInfo.name = "hh_\(arc4random_uniform(100) + 100)"
@@ -29,6 +30,10 @@ class HHSocket {
     init(address: String, port: Int32){
         tcpClient = TCPClient(address: address, port: port)
     }
+    deinit {
+        timer.invalidate()
+        timer = nil
+    }
 }
 
 extension HHSocket {
@@ -38,6 +43,10 @@ extension HHSocket {
         case .success:
             print("connect success, ready to read message from server!")
             startReadMessage()
+            timer = Timer(timeInterval: 9, repeats: true, block: { [weak self] (_) in
+                self?.sendHeartBeat()
+            })
+            RunLoop.current.add(timer, forMode: .common)
             return true
         case .failure(let error):
             print("connect failure：\(error)")
@@ -141,7 +150,7 @@ extension HHSocket {
         }
     }
     
-    func sendMsg(data: Data, type: Int) {
+    fileprivate func sendMsg(data: Data, type: Int) {
         // 1.将消息长度, 写入到data
         var length = data.count
         let headerData = Data(bytes: &length, count: 4)
@@ -158,5 +167,17 @@ extension HHSocket {
         case .failure(let error):
             print("send error：\(error)")
         }
+    }
+}
+
+extension HHSocket {
+    @objc fileprivate func sendHeartBeat() {
+        print("💓💓💓💓💓💓💓💓💓")
+        // 1.获取心跳包中的数据
+        let heartString = "I am a heart beat"
+        let heartData = heartString.data(using: .utf8)!
+        
+        // 2.发送数据
+        sendMsg(data: heartData, type: 100)
     }
 }
