@@ -13,4 +13,7 @@ target 'HHTV' do
   pod 'Alamofire'
   pod 'Kingfisher'
   
+  pod 'SwiftSocket'
+  pod 'ProtocolBuffers-Swift'
+  
 end

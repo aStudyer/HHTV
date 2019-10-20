@@ -18,6 +18,7 @@ class RoomViewController: UIViewController, Emitterable {
     
     fileprivate lazy var chatToolsView: ChatToolsView = ChatToolsView.loadFromNib()
     fileprivate lazy var giftListView: GiftListView = GiftListView.loadFromNib()
+    private lazy var socket: HHSocket = HHSocket(address: "192.168.1.4", port: 9999)
     
     // MARK: 系统回调函数
     override func viewDidLoad() {
@@ -25,7 +26,12 @@ class RoomViewController: UIViewController, Emitterable {
         
         setupUI()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UITextView.keyboardWillChangeFrameNotification, object: nil)
+        
+        if socket.connectServer() {
+            socket.delegate = self
+            socket.sendJoinRoom()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +42,7 @@ class RoomViewController: UIViewController, Emitterable {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        socket.sendLeaveRoom()
     }
     
     deinit {
@@ -115,25 +122,41 @@ extension RoomViewController {
 // MARK:- 监听键盘的弹出
 extension RoomViewController {
     @objc fileprivate func keyboardWillChangeFrame(_ note : Notification) {
-        let duration = note.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
-        let endFrame = (note.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let duration = note.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+        let endFrame = (note.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let inputViewY = endFrame.origin.y - kChatToolsViewHeight
-        let curve = note.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! Int
+        let curve = note.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! Int
         UIView.animate(withDuration: duration, animations: {
-            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve)!)
+            UIView.setAnimationCurve(UIView.AnimationCurve(rawValue: curve)!)
             let endY = inputViewY == (kScreenH - kChatToolsViewHeight) ? kScreenH : inputViewY
             self.chatToolsView.frame.origin.y = endY
         })
     }
 }
 
-// MARK:- 监听用户输入的内容
+// MARK:- 给服务器发送消息
 extension RoomViewController : ChatToolsViewDelegate, GiftListViewDelegate {
     func chatToolsView(toolView: ChatToolsView, message: String) {
-        print(message)
+        socket.sendTextMsg(message: message)
     }
     
     func giftListView(giftView: GiftListView, giftModel: GiftModel) {
-        print(giftModel.subject)
+        socket.sendGiftMsg(giftName: giftModel.subject, giftURL: giftModel.img2, giftCount: 1)
+    }
+}
+
+// MARK: - 接收服务器返回的消息
+extension RoomViewController: HHSocketDelegate {
+    func socket(_ socket: HHSocket, joinRoom user: UserInfo) {
+        print("\(String(describing: user.name))进入了房间")
+    }
+    func socket(_ socket: HHSocket, leaveRoom user: UserInfo) {
+        print("\(String(describing: user.name))离开了房间")
+    }
+    func socket(_ socket: HHSocket, chatMsg: ChatMessage) {
+        print("\(String(describing: chatMsg.user.name))说：\(String(describing: chatMsg.text))")
+    }
+    func socket(_ socket: HHSocket, giftMsg: GiftMessage) {
+        print("\(String(describing: giftMsg.user.name))送出了\(String(describing: giftMsg.giftname))")
     }
 }

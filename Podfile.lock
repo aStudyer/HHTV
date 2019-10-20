@@ -2,11 +2,15 @@ PODS:
   - Alamofire (4.9.0)
   - HHPageView (0.1.6)
   - Kingfisher (4.10.1)
+  - ProtocolBuffers-Swift (4.0.6)
+  - SwiftSocket (2.0.2)
 
 DEPENDENCIES:
   - Alamofire
   - HHPageView
   - Kingfisher
+  - ProtocolBuffers-Swift
+  - SwiftSocket
 
 SPEC REPOS:
   https://github.com/aStudyer/HHSpecs.git:
@@ -14,12 +18,16 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Kingfisher
+    - ProtocolBuffers-Swift
+    - SwiftSocket
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   HHPageView: b9081fc0417dadbe656dcde5c8200cc48b928375
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  ProtocolBuffers-Swift: 09b5cfcc641ab512d6aaa1d2cc3879a40432052c
+  SwiftSocket: 6f4c9c63fbc5c1d61188936bb3c599fd546f40ae
 
-PODFILE CHECKSUM: 9dd3682d9070649f51f468800ff77bf5d31b1e74
+PODFILE CHECKSUM: 8ddeca3b52bac91003960d8c92347acda00962dd
 
 COCOAPODS: 1.6.1

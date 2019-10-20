@@ -35,6 +35,8 @@
 		8D2FBD5E2343A59500886A38 /* GiftViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FBD5D2343A59500886A38 /* GiftViewCell.swift */; };
 		8D2FBD6123448D3A00886A38 /* QHNormalEmotionSort.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD5F23448D3A00886A38 /* QHNormalEmotionSort.plist */; };
 		8D2FBD6223448D3A00886A38 /* QHSohuGifSort.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D2FBD6023448D3A00886A38 /* QHSohuGifSort.plist */; };
+		8D696206234E3E6200E0093F /* HHSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D696204234E3E6200E0093F /* HHSocket.swift */; };
+		8D696207234E3E6200E0093F /* Immessage.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D696205234E3E6200E0093F /* Immessage.proto.swift */; };
 		8DF0AAFD232CB8BA00B939BF /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AAFC232CB8BA00B939BF /* NavigationController.swift */; };
 		8DF0AAFF232CB9C400B939BF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AAFE232CB9C400B939BF /* HomeViewController.swift */; };
 		8DF0AB01232CB9D600B939BF /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0AB00232CB9D600B939BF /* RankViewController.swift */; };
@@ -90,6 +92,8 @@
 		8D2FBD5D2343A59500886A38 /* GiftViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftViewCell.swift; sourceTree = "<group>"; };
 		8D2FBD5F23448D3A00886A38 /* QHNormalEmotionSort.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = QHNormalEmotionSort.plist; sourceTree = "<group>"; };
 		8D2FBD6023448D3A00886A38 /* QHSohuGifSort.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = QHSohuGifSort.plist; sourceTree = "<group>"; };
+		8D696204234E3E6200E0093F /* HHSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HHSocket.swift; sourceTree = "<group>"; };
+		8D696205234E3E6200E0093F /* Immessage.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Immessage.proto.swift; sourceTree = "<group>"; };
 		8DF0AAFC232CB8BA00B939BF /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		8DF0AAFE232CB9C400B939BF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8DF0AB00232CB9D600B939BF /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +325,15 @@
 			path = GiftView;
 			sourceTree = "<group>";
 		};
+		8D696203234E3E0700E0093F /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				8D696204234E3E6200E0093F /* HHSocket.swift */,
+				8D696205234E3E6200E0093F /* Immessage.proto.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
 		8DF0AB06232CBEF900B939BF /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +400,7 @@
 		8DF0AB6423312D9A00B939BF /* Live */ = {
 			isa = PBXGroup;
 			children = (
+				8D696203234E3E0700E0093F /* Socket */,
 				8D2FBD3E234258F300886A38 /* ViewModel */,
 				8D2FBD3D234258EC00886A38 /* View */,
 				8D2FBD3C234258E700886A38 /* Model */,
@@ -518,6 +532,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/HHPageView/HHPageView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ProtocolBuffers-Swift/ProtocolBuffers.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSocket/SwiftSocket.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -526,6 +542,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HHPageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtocolBuffers.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSocket.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -564,6 +582,7 @@
 				8DF0AB01232CB9D600B939BF /* RankViewController.swift in Sources */,
 				8DF0AB6B23312E1000B939BF /* Const.swift in Sources */,
 				8D2FBD47234259C600886A38 /* EmoticonViewCell.swift in Sources */,
+				8D696206234E3E6200E0093F /* HHSocket.swift in Sources */,
 				8D2FBD552342607800886A38 /* GiftModel.swift in Sources */,
 				8DF0AB5023312AF300B939BF /* HomeViewModel.swift in Sources */,
 				18CAC9CC1DD182E7006A328E /* MainViewController.swift in Sources */,
@@ -587,6 +606,7 @@
 				8D2FBD45234259AB00886A38 /* EmoticonView.swift in Sources */,
 				8DF0AAFF232CB9C400B939BF /* HomeViewController.swift in Sources */,
 				8DF0AB6323312D6600B939BF /* KingfisherExtension.swift in Sources */,
+				8D696207234E3E6200E0093F /* Immessage.proto.swift in Sources */,
 				8DF0AB5623312B4B00B939BF /* AnchorModel.swift in Sources */,
 				8DF0AB6723312DB900B939BF /* RoomViewController.swift in Sources */,
 				8DF0AB4E23312AD500B939BF /* WaterfallLayout.swift in Sources */,
@@ -726,11 +746,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = WFU32UD56B;
 				INFOPLIST_FILE = HHTV/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aStudyer.HHTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -742,11 +762,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = WFU32UD56B;
 				INFOPLIST_FILE = HHTV/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aStudyer.HHTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
